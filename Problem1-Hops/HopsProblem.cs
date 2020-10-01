@@ -26,26 +26,26 @@ namespace Problem1_Hops
         }
 
         //very naive and inefficient 
-        static void GenTree( Tree<int> t, int[] hops, int dep )
+        static void GenTree( Tree<int> t, int[] hops, int depth )
         {
-            if( dep == 0 )
+            if( depth == 0 )
                 return;
             foreach( var hop in hops )
-                GenTree( t.Add( hop ), hops, dep - 1 );
+                GenTree( t.Add( hop ), hops, depth - 1 );
         }
 
         static IEnumerable<Tree<T>> GetLeaves<T>( Tree<T> t )
         {
             var leaves = new List<Tree<T>>();
-            foreach( var t1 in t.Nodes )
+            foreach( var node in t.Nodes.Values )
             {
-                var cur = t1.Value;
+                var cur = node;
                 if( cur.Nodes != null )
                 {
-                    leaves.AddRange( GetLeaves<T>( t1.Value ) );
+                    leaves.AddRange( GetLeaves<T>( node ) );
                     continue;
                 }
-                leaves.Add( t1.Value );
+                leaves.Add( node );
             }
             return leaves;
         }
