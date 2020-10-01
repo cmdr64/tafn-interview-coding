@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Problem1_Hops {
     class Tree<T>
     {
-        public Tree<T>                  Par = null;   //the parent of this node
-        public T                        Val;          //val of this node
-        public SortedList<T, Tree<T>> Nodes = null; //children
+        public Tree<T>                Par   = null;       //the parent of this node
+        public T                      Val   = default(T); //val of this node
+        public SortedList<T, Tree<T>> Nodes = null;       //children
 
         Tree( T val, Tree<T> par )
         {
@@ -15,10 +15,7 @@ namespace Problem1_Hops {
         }
 
         //only for the root node
-        public Tree( T val )
-        {
-            Val = val;
-        }
+        public Tree( T val ) { Val = val; }
 
         public Tree<T> Add( T c )
         {
@@ -30,6 +27,7 @@ namespace Problem1_Hops {
             return Nodes[c];
         }
 
+        //all functions below this line are for debugging 
         static string Pad( int indent ) => "".PadLeft( 4 * indent, ' ' );
         static void Print( Tree<T> t, int indent )
         {

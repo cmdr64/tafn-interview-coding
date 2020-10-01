@@ -10,9 +10,9 @@ namespace Problem1_Hops
     {
         static bool OutOfBounds( int max, int next ) => next < 0 || next >= max;
         static bool CheckPath( int   start,
-                        int   goal,
-                        int   maxSub,
-                        int[] path )
+                               int   goal,
+                               int   maxSub,
+                               int[] path )
         {
             var pos = start;
             foreach( var node in path )
@@ -73,17 +73,14 @@ namespace Problem1_Hops
         [TestMethod]
         public void Hops()
         {
-            var arrSize = 4;
-            var res     = new int[arrSize];
-            Array.Clear( res, 0, arrSize ); //set it to zero
-
-            var hops    = new int[] { -2, -1, 1, 2 };
-            var maxHops = 3; //maxSub tree depth is 4
-            var start   = 1;
+            const int arrSize = 4;
+            var       res     = new int[arrSize];
+            var       hops    = new int[] { -2, -1, 1, 2 };
+            const int maxHops = 3;
+            const int start   = 1;
 
             for( var goal = 0; goal < arrSize; goal++ )
             {
-                //Console.WriteLine( "Hops to " + goal + " from " + start );
                 var t = new Tree<int>( 0 );
                 GenTree( t, hops, maxHops );
                 var leaves = GetLeaves( t );
